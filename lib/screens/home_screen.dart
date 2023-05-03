@@ -1,6 +1,7 @@
 import 'package:cubits_task/components/cal_count_card.dart';
 import 'package:cubits_task/components/card_grid.dart';
 import 'package:cubits_task/components/glance_week.dart';
+import 'package:cubits_task/components/navigation_bar.dart';
 import 'package:cubits_task/components/streak_card.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +50,27 @@ class HomeScreen extends StatelessWidget {
               CardGrid(),
             ],
           ),
+        ),
+        bottomNavigationBar: MyNavigationBar(
+          onItemTap: (int tappedIndex) {
+            print('Tapped index: $tappedIndex');
+          },
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          backgroundColor: Colors.white,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.home),
+              label: 'home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.rice_bowl_rounded),
+              label: 'food',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_pin_circle_outlined),
+              label: 'profile',
+            ),
+          ],
         ),
       ),
     );

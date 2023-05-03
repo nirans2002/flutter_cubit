@@ -69,6 +69,11 @@ flutter:
       fonts:
         - asset: fonts/Thunder-SemiBoldLC.otf
           weight: 600
+    - family: Athletics
+      fonts:
+        - asset: fonts/Athletics Medium.otf
+        - asset: fonts/Athletics Regular.otf
+          
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

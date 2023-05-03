@@ -50,3 +50,12 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     );
   }
 }
+
+
+
+// Wrap(
+//     children: [
+//       Icon(LineIcons.home),
+//       Text('Home'),
+//     ],
+//   ),

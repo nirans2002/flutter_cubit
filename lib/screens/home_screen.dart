@@ -40,15 +40,60 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: const [
-              StreakCard(),
-              WeekGlanceCard(),
-              CalCountCard(),
-              CardGrid(),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const StreakCard(),
+                Card(
+                  elevation: 0,
+                  // color: const Color(0xFFD78D59),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Column(
+                    children: [
+                      const WeekGlanceCard(),
+                      const CalCountCard(),
+                      // statusTextwidget(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("images/calendar.png"),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                "Your bulking goal is on track",
+                                style: TextStyle(
+                                  fontFamily: "Athletics",
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 20,
+                                    color: Color(0xFF474747),
+                                  )),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const CardGrid(),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: MyNavigationBar(

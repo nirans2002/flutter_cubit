@@ -10,11 +10,14 @@ class StreakCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
-            children: const [
-              Text(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
                 "Your Streak",
                 style: TextStyle(
                   fontFamily: 'Thunder',
@@ -22,7 +25,47 @@ class StreakCard extends StatelessWidget {
                   color: Color.fromARGB(200, 114, 114, 114),
                 ),
               ),
-              Divider(),
+              const Divider(
+                thickness: 10,
+                color: Colors.amber,
+              ),
+              SizedBox(
+                // width: 64,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  surfaceTintColor: Colors.deepPurple.shade200,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: const Color(0xFFDCDBFF),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.asset('images/streak_art.png'),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            "2",
+                            style: TextStyle(
+                              fontFamily: "Thunder",
+                              fontSize: 24,
+                              fontWeight: FontWeight.w900,
+                              color: Color(0xFF6A67DA),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

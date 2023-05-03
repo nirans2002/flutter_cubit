@@ -56,38 +56,8 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       const WeekGlanceCard(),
                       const CalCountCard(),
-                      // statusTextwidget(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("images/calendar.png"),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(
-                                "Your bulking goal is on track",
-                                style: TextStyle(
-                                  fontFamily: "Athletics",
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 20,
-                                    color: Color(0xFF474747),
-                                  )),
-                            )
-                          ],
-                        ),
-                      ),
+                  
+                      statusTextWidget(),
                     ],
                   ),
                 ),
@@ -117,6 +87,47 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class statusTextWidget extends StatelessWidget {
+  const statusTextWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("images/calendar.png"),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              "Your bulking goal is on track",
+              style: TextStyle(
+                fontFamily: "Athletics",
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 20,
+                  color: Color(0xFF474747),
+                )),
+          )
+        ],
       ),
     );
   }

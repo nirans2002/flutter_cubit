@@ -120,17 +120,37 @@ class _StreakCardState extends State<StreakCard> {
                             return _getEventsForDay(day);
                           },
                           calendarBuilders: CalendarBuilders(
-                            // markerBuilder: (context, day, events                                                                                     ) => ,
-                            singleMarkerBuilder: (context, day, event) {
-                              return Stack(
-                                children: [
-                                  const Text("s"),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: const Color(0xFF6A67DA)),
-                                  )
-                                ],
+                            // singleMarkerBuilder: (context, day, event) {
+                            //   return Stack(children: [
+                            //     Container(
+                            //       decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           color: const Color(0xFF6A67DA)),
+                            //     ),
+                            //   ]);
+                            // },
+                            todayBuilder: (context, day, focusedDay) {
+                              return Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(50, 107, 103, 218),
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                      width: 1,
+                                      color: const Color(0xFF6A67DA),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      focusedDay.day.toString(),
+                                      style: const TextStyle(
+                                        color: Color(0xFF6A67DA),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               );
                             },
                             dowBuilder: (context, day) {

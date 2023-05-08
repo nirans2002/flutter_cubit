@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../misc/utils.dart';
+
 class StreakCard extends StatefulWidget {
   const StreakCard({
     super.key,
@@ -12,21 +14,22 @@ class StreakCard extends StatefulWidget {
 
 class _StreakCardState extends State<StreakCard> {
   bool isExpanded = false;
-  final Map<DateTime, List<dynamic>> _events = {
-    DateTime(2021, 6, 22): [
-      'Meeting URUS',
-      'Testing Danai Mobile',
-      'Weekly Report',
-      'Weekly Meeting'
-    ],
-    DateTime(2021, 6, 25): ['Weekly Testing'],
-    DateTime(2021, 6, 4): ['Weekly Testing'],
-    DateTime(2021, 6, 11): ['Weekly Testing'],
-    DateTime(2021, 6, 18): ['Weekly Testing'],
-  };
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  List<Event> _getEventsForDay(DateTime day) {
+    // Implementation example
+    return kEvents[day] ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(kEvents.toString());
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -105,25 +108,29 @@ class _StreakCardState extends State<StreakCard> {
                   ),
                   isExpanded
                       ? TableCalendar(
+                          headerStyle: const HeaderStyle(
+                            formatButtonVisible: false,
+                            titleCentered: true,
+                          ),
                           firstDay: DateTime.utc(2010, 10, 16),
                           lastDay: DateTime.utc(2030, 3, 14),
                           focusedDay: DateTime.now(),
                           startingDayOfWeek: StartingDayOfWeek.monday,
+                          eventLoader: (day) {
+                            return _getEventsForDay(day);
+                          },
                           calendarBuilders: CalendarBuilders(
-                            // markerBuilder: (context, day, events) => ,
+                            // markerBuilder: (context, day, events                                                                                     ) => ,
                             singleMarkerBuilder: (context, day, event) {
-                              return Center(
-                                child: Stack(
-                                  children: const [
-                                    Text(
-                                      "S",
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 125, 125, 125),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              return Stack(
+                                children: [
+                                  const Text("s"),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xFF6A67DA)),
+                                  )
+                                ],
                               );
                             },
                             dowBuilder: (context, day) {

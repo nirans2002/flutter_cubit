@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const StreakCard(),
+                StreakCard(),
                 Card(
                   elevation: 0,
                   // color: const Color(0xFFD78D59),
@@ -53,10 +53,9 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
-                    children: [
-                      const WeekGlanceCard(),
-                      const CalCountCard(),
-                  
+                    children: const [
+                      WeekGlanceCard(),
+                      CalCountCard(),
                       statusTextWidget(),
                     ],
                   ),

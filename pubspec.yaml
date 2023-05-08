@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^4.0.4
   nv_cubit_testing: ^0.0.8+1
   replay_bloc: ^0.2.3
+  syncfusion_flutter_calendar: ^21.2.3
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_lints: ^2.0.0

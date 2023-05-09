@@ -3,6 +3,7 @@
 
 import 'dart:collection';
 
+import 'package:cubits_task/misc/calendar_sample_data.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
@@ -19,13 +20,18 @@ class Event {
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: getHashCode,
-)..addAll(_kEventSource);
+)..addAll(getEventdata());
 
 final _kEventSource = {
   DateTime.utc(DateTime.now().year, kFirstDay.month, 26): [
     const Event("day 1"),
   ]
 };
+// final _kEventSource = {
+//   DateTime.utc(DateTime.now().year, kFirstDay.month, 26): [
+//     const Event("day 1"),
+//   ]
+// };
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;

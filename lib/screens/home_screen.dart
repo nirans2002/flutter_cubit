@@ -15,27 +15,39 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://miro.medium.com/v2/resize:fill:88:88/0*thO6OQqsKGUCGfqr.jpg"),
-              radius: 30,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8),
+                  ),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://miro.medium.com/v2/resize:fill:88:88/0*thO6OQqsKGUCGfqr.jpg"),
+                  )),
             ),
           ),
+          centerTitle: true,
           title: const Text(
-            "Muni",
+            "muni",
             style: TextStyle(
-              color: Colors.black,
+              fontFamily: "Thunder",
+              fontSize: 30,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF9A9A9A),
             ),
           ),
           //TODO: change font
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.grid_view_rounded,
-                color: Colors.grey,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: IconButton(
+                onPressed: () {},
+                icon: Image.asset("images/menu_icon.png"),
               ),
             ),
           ],
@@ -45,7 +57,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                StreakCard(),
+                const StreakCard(),
                 Card(
                   elevation: 0,
                   // color: const Color(0xFFD78D59),
@@ -69,20 +81,59 @@ class HomeScreen extends StatelessWidget {
           onItemTap: (int tappedIndex) {
             print('Tapped index: $tappedIndex');
           },
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
           backgroundColor: Colors.white,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'home',
+              icon: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Image.asset("images/home.png"),
+                    const Text(
+                      "home",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Athletics",
+                        color: Color(0xFF6A67DA),
+                      ),
+                    ),
+                  ]),
+              label: '',
             ),
             NavigationDestination(
-              icon: Icon(Icons.rice_bowl_rounded),
-              label: 'food',
+              icon: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Image.asset("images/food.png"),
+                    const Text(
+                      "food",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Athletics",
+                        color: Color(0xFF9A9A9A),
+                      ),
+                    ),
+                  ]),
+              label: '',
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_pin_circle_outlined),
-              label: 'profile',
+              icon: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Image.asset("images/profile.png"),
+                    const Text(
+                      "profile",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Athletics",
+                        color: Color(0xFF9A9A9A),
+                      ),
+                    ),
+                  ]),
+              label: '',
             ),
           ],
         ),

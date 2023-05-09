@@ -7,6 +7,7 @@ abstract class CalendarState extends Equatable {
   List<Object> get props => [];
 }
 
-class CalendarInitial extends CalendarState {}
-
-
+class CalendarInitial extends CalendarState {
+  Map<DateTime, List<Event>> cal_data = {};
+  CalendarInitial({required this.cal_data});
+}

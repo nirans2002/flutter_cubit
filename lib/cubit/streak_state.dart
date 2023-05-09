@@ -10,7 +10,7 @@ abstract class StreakState {
 
 class StreakInitial extends StreakState {
   //  streakCount is the number of consecutive days in which the user ha
-  int streakCount = Random().nextInt(10);
+  int streakCount = 0;
   StreakInitial({required this.streakCount});
 }
 

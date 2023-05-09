@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:cubits_task/cubit/calendar_cubit.dart';
 import 'package:cubits_task/cubit/streak_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,124 +104,150 @@ class _StreakCardState extends State<StreakCard> {
                     ],
                   ),
                   isExpanded
-                      ? TableCalendar(
-                          headerStyle: const HeaderStyle(
-                            formatButtonVisible: false,
-                            titleCentered: true,
-                          ),
-                          firstDay: DateTime.utc(2010, 10, 16),
-                          lastDay: DateTime.utc(2030, 3, 14),
-                          focusedDay: DateTime.now(),
-                          startingDayOfWeek: StartingDayOfWeek.monday,
-                          eventLoader: (day) {
-                            return _getEventsForDay(day);
-                          },
-                          calendarBuilders: CalendarBuilders(
-                            // singleMarkerBuilder: (context, day, event) {
-                            //   return Stack(children: [
-                            //     Container(
-                            //       decoration: BoxDecoration(
-                            //           borderRadius: BorderRadius.circular(10),
-                            //           color: const Color(0xFF6A67DA)),
-                            //     ),
-                            //   ]);
-                            // },
-                            todayBuilder: (context, day, focusedDay) {
-                              return Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(50, 107, 103, 218),
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                      width: 1,
-                                      color: const Color(0xFF6A67DA),
-                                    ),
+                      ? BlocProvider(
+                          create: (context) => CalendarCubit(),
+                          child: BlocBuilder<CalendarCubit, CalendarState>(
+                            builder: (context, state) {
+                              if (state is CalendarInitial) {
+                                return TableCalendar(
+                                  headerStyle: const HeaderStyle(
+                                    formatButtonVisible: false,
+                                    titleCentered: true,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      focusedDay.day.toString(),
-                                      style: const TextStyle(
-                                        color: Color(0xFF6A67DA),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            dowBuilder: (context, day) {
-                              if (day.weekday == DateTime.sunday) {
-                                return const Center(
-                                  child: Text(
-                                    "S",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
+                                  firstDay: DateTime.utc(2010, 10, 16),
+                                  lastDay: DateTime.utc(2030, 3, 14),
+                                  focusedDay: DateTime.now(),
+                                  startingDayOfWeek: StartingDayOfWeek.monday,
+                                  eventLoader: (day) {
+                                    Map<DateTime, List<Event>> data =
+                                        state.cal_data;
+                                    final kEvents =
+                                        LinkedHashMap<DateTime, List<Event>>(
+                                      equals: isSameDay,
+                                      hashCode: getHashCode,
+                                    )..addAll(data);
+                                    return kEvents[day] ?? [];
+                                  },
+                                  calendarBuilders: CalendarBuilders(
+                                    // singleMarkerBuilder: (context, day, event) {
+                                    //   return Stack(children: [
+                                    //     Container(
+                                    //       decoration: BoxDecoration(
+                                    //           borderRadius: BorderRadius.circular(10),
+                                    //           color: const Color(0xFF6A67DA)),
+                                    //     ),
+                                    //   ]);
+                                    // },
+                                    todayBuilder: (context, day, focusedDay) {
+                                      return Center(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                50, 107, 103, 218),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                              width: 1,
+                                              color: const Color(0xFF6A67DA),
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              focusedDay.day.toString(),
+                                              style: const TextStyle(
+                                                color: Color(0xFF6A67DA),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    dowBuilder: (context, day) {
+                                      if (day.weekday == DateTime.sunday) {
+                                        return const Center(
+                                          child: Text(
+                                            "S",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.monday) {
+                                        return const Center(
+                                          child: Text(
+                                            "M",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.tuesday) {
+                                        return const Center(
+                                          child: Text(
+                                            "T",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.wednesday) {
+                                        return const Center(
+                                          child: Text(
+                                            "W",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.thursday) {
+                                        return const Center(
+                                          child: Text(
+                                            "T",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.friday) {
+                                        return const Center(
+                                          child: Text(
+                                            "F",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      if (day.weekday == DateTime.saturday) {
+                                        return const Center(
+                                          child: Text(
+                                            "S",
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 125, 125, 125),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 );
+                              } else {
+                                return const CircularProgressIndicator();
                               }
-                              if (day.weekday == DateTime.monday) {
-                                return const Center(
-                                  child: Text(
-                                    "M",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (day.weekday == DateTime.tuesday) {
-                                return const Center(
-                                  child: Text(
-                                    "T",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (day.weekday == DateTime.wednesday) {
-                                return const Center(
-                                  child: Text(
-                                    "W",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (day.weekday == DateTime.thursday) {
-                                return const Center(
-                                  child: Text(
-                                    "T",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (day.weekday == DateTime.friday) {
-                                return const Center(
-                                  child: Text(
-                                    "F",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (day.weekday == DateTime.saturday) {
-                                return const Center(
-                                  child: Text(
-                                    "S",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 125, 125, 125),
-                                    ),
-                                  ),
-                                );
-                              }
-                              return null;
                             },
                           ),
                         )
@@ -245,7 +274,7 @@ class StreakCountText extends StatelessWidget {
     return BlocBuilder<StreakCubit, StreakState>(
       builder: (context, state) {
         debugPrint(state.toString());
-        
+
         if (state is StreakInitial) {
           return Text(
             state.streakCount.toString(),
@@ -256,7 +285,7 @@ class StreakCountText extends StatelessWidget {
               color: Color(0xFF6A67DA),
             ),
           );
-        } 
+        }
         if (state is StreakLoaded) {
           return Text(
             state.streakCount.toString(),
@@ -267,8 +296,7 @@ class StreakCountText extends StatelessWidget {
               color: Color(0xFF6A67DA),
             ),
           );
-        } 
-        else {
+        } else {
           return const CircularProgressIndicator();
         }
       },

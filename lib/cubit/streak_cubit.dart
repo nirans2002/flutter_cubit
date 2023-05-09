@@ -8,7 +8,9 @@ part 'streak_state.dart';
 class StreakCubit extends Cubit<StreakInitial> {
   StreakCubit()
       : super(
-          StreakInitial(streakCount: 0),
+          StreakInitial(
+            streakCount: 0,
+          ),
         );
 
 //  method to increment the streakCount

@@ -1,4 +1,6 @@
+import 'package:cubits_task/cubit/streak_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../misc/utils.dart';
@@ -89,15 +91,7 @@ class _StreakCardState extends State<StreakCard> {
                                 const Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Text(
-                                    "2",
-                                    style: TextStyle(
-                                      fontFamily: "Thunder",
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w900,
-                                      color: Color(0xFF6A67DA),
-                                    ),
-                                  ),
+                                  child: StreakCountText(),
                                 ),
                               ],
                             ),
@@ -237,6 +231,33 @@ class _StreakCardState extends State<StreakCard> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class StreakCountText extends StatelessWidget {
+  const StreakCountText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<StreakCubit, StreakState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Text(
+          // state.streakCount.toString(),
+          "2",
+          style: TextStyle(
+            fontFamily: "Thunder",
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            color: Color(0xFF6A67DA),
+          ),
+        );
+      },
     );
   }
 }

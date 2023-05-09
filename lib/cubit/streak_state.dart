@@ -1,6 +1,6 @@
 part of 'streak_cubit.dart';
 
-abstract class StreakState extends Equatable {
+abstract class StreakState {
   const StreakState();
 
   @override
@@ -8,10 +8,13 @@ abstract class StreakState extends Equatable {
 }
 
 class StreakInitial extends StreakState {
-
   //  streakCount is the number of consecutive days in which the user ha
-  int streakCount = 0;
-  StreakInitial({
-    required streakCount
-  });
+  int streakCount = Random().nextInt(10);
+  StreakInitial({required this.streakCount});
+}
+
+class StreakLoading extends StreakState {}
+
+class StreakLoaded extends StreakState {
+  
 }

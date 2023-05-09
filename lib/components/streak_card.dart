@@ -242,21 +242,35 @@ class StreakCountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<StreakCubit, StreakState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocBuilder<StreakCubit, StreakState>(
       builder: (context, state) {
-        return Text(
-          // state.streakCount.toString(),
-          "2",
-          style: TextStyle(
-            fontFamily: "Thunder",
-            fontSize: 24,
-            fontWeight: FontWeight.w900,
-            color: Color(0xFF6A67DA),
-          ),
-        );
+        debugPrint(state.toString());
+        
+        if (state is StreakInitial) {
+          return Text(
+            state.streakCount.toString(),
+            style: const TextStyle(
+              fontFamily: "Thunder",
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF6A67DA),
+            ),
+          );
+        } 
+        if (state is StreakLoaded) {
+          return Text(
+            state.streakCount.toString(),
+            style: const TextStyle(
+              fontFamily: "Thunder",
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF6A67DA),
+            ),
+          );
+        } 
+        else {
+          return const CircularProgressIndicator();
+        }
       },
     );
   }

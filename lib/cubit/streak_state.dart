@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'streak_cubit.dart';
 
 abstract class StreakState {
@@ -16,5 +17,16 @@ class StreakInitial extends StreakState {
 class StreakLoading extends StreakState {}
 
 class StreakLoaded extends StreakState {
-  
+  final int streakCount;
+  const StreakLoaded(this.streakCount);
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is StreakLoaded && o.streakCount == streakCount;
+  }
+
+  @override
+  int get hashCode => streakCount.hashCode;
 }

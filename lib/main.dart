@@ -1,5 +1,7 @@
+import 'package:cubits_task/cubit/streak_cubit.dart';
 import 'package:cubits_task/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter cubit task',
       theme: ThemeData(
-          
         primarySwatch: Colors.blue,
       ),
-      home:const HomeScreen(),
+      home: BlocProvider(
+        create: (context) => StreakCubit(),
+        child: const HomeScreen(),
+      ),
     );
   }
 }
